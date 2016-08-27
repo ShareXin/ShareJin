@@ -2,8 +2,8 @@
 
 #### Requirements
 Java 8  
-Windows, Linux, or (not tested) macOS    
-gnome-screenshot  
+Windows, Linux, or macOS    
+gnome-screenshot (if you use Linux)  
 
 #### Features
 * Uploads to Twitter
