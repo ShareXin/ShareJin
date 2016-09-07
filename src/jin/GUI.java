@@ -4,7 +4,7 @@
     GUI using Swing to Tweet via Twitter4j, intended as an alternative to ShareX
  */
 
-package learn;
+package jin;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,13 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import twitter4j.Twitter;
-import twitter4j.StatusUpdate;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import org.ini4j.*;
 
-public final class GUI extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame {
     
     static String cmdName = "[ShareJin] ";
     
@@ -26,7 +25,7 @@ public final class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void initComponents() {
+    public final void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -111,22 +110,17 @@ public final class GUI extends javax.swing.JFrame {
         String osVer = System.getProperty("os.version");
         String osNameCheck = osName.toLowerCase();
         String osConfigLocation;
-        String fileString;
         if (osNameCheck.contains("linux")) {
             osConfigLocation = "/.config/ShareJin";
-            fileString = "/tmp/ShareJin_tmp.jpg";
         }
         else if (osNameCheck.contains("windows")) {
             osConfigLocation = "\\AppData\\Local\\ShareJin";
-            fileString = "C:\\tmp\\ShareJin_tmp.jpg";
         }
         else if (osNameCheck.contains("mac")) {
             osConfigLocation = "/Library/Application Support/ShareJin";
-            fileString = "/tmp/ShareJin_tmp.jpg";
         }
         else {
             osConfigLocation = "/ShareJin";
-            fileString = "/tmp/ShareJin_tmp.jpg";
         }
         
         String userDirectory = System.getProperty("user.home") + osConfigLocation;
@@ -141,8 +135,6 @@ public final class GUI extends javax.swing.JFrame {
         String consumerSecretStr = ini.get("Twitter", "api_secret");
         String accessTokenStr = ini.get("Twitter", "access");
         String accessTokenSecretStr = ini.get("Twitter", "access_secret");
-        File file = new File("/tmp/ShareJin_tmp.jpg");
-        System.out.println(cmdName + "Image: " + fileString);
         String statusMessage = jTextArea1.getText();
         System.out.println (cmdName + "Tweet: "  + jTextArea1.getText());
 
@@ -155,10 +147,7 @@ public final class GUI extends javax.swing.JFrame {
 
 	    twitter.setOAuthAccessToken(accessToken);
             
-            StatusUpdate status = new StatusUpdate(statusMessage);
-            status.setMedia(file);
-            twitter.updateStatus(status);
-            //twitter.updateStatus(statusMessage);
+            twitter.updateStatus(statusMessage);
 
 	    System.out.println(cmdName + "Success.");
 	    }

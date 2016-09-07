@@ -1,10 +1,10 @@
 /*
-    ShareJin                                             Author: Jorge Huicochea
+    ShareJin (Image)                                     Author: Jorge Huicochea
 
     GUI using Swing to Tweet via Twitter4j, intended as an alternative to ShareX
  */
 
-package learn;
+package jin;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +16,9 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import org.ini4j.*;
+import twitter4j.StatusUpdate;
 
-public final class GUI extends javax.swing.JFrame {
+public class GUI extends javax.swing.JFrame {
     
     static String cmdName = "[ShareJin] ";
     
@@ -25,7 +26,7 @@ public final class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void initComponents() {
+    public final void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -111,21 +112,26 @@ public final class GUI extends javax.swing.JFrame {
         String osNameCheck = osName.toLowerCase();
         String osConfigLocation;
         String fileString;
+        String fileLocation;
         if (osNameCheck.contains("linux")) {
             osConfigLocation = "/.config/ShareJin";
             fileString = "/tmp/ShareJin_tmp.jpg";
+            fileLocation = "/tmp/ShareJin_tmp.jpg";
         }
         else if (osNameCheck.contains("windows")) {
             osConfigLocation = "\\AppData\\Local\\ShareJin";
-            fileString = "C:\\tmp\\ShareJin_tmp.jpg";
+            fileString = System.getProperty("user.home") + "\\AppData\\Local\\Temp\\ShareJin_tmp.jpg";
+            fileLocation = System.getProperty("user.home") + "\\AppData\\Local\\Temp\\ShareJin_tmp.jpg";
         }
         else if (osNameCheck.contains("mac")) {
             osConfigLocation = "/Library/Application Support/ShareJin";
             fileString = "/tmp/ShareJin_tmp.jpg";
+            fileLocation = "/tmp/ShareJin_tmp.jpg";
         }
         else {
             osConfigLocation = "/ShareJin";
             fileString = "/tmp/ShareJin_tmp.jpg";
+            fileLocation = "/tmp/ShareJin_tmp.jpg";
         }
         
         String userDirectory = System.getProperty("user.home") + osConfigLocation;
@@ -140,7 +146,7 @@ public final class GUI extends javax.swing.JFrame {
         String consumerSecretStr = ini.get("Twitter", "api_secret");
         String accessTokenStr = ini.get("Twitter", "access");
         String accessTokenSecretStr = ini.get("Twitter", "access_secret");
-        File file = new File("/tmp/ShareJin_tmp.jpg");
+        File file = new File(fileLocation);
         System.out.println(cmdName + "Image: " + fileString);
         String statusMessage = jTextArea1.getText();
         System.out.println (cmdName + "Tweet: "  + jTextArea1.getText());
@@ -154,10 +160,9 @@ public final class GUI extends javax.swing.JFrame {
 
 	    twitter.setOAuthAccessToken(accessToken);
             
-            //StatusUpdate status = new StatusUpdate(statusMessage);
-            //status.setMedia(file);
-            //twitter.updateStatus(status);
-            twitter.updateStatus(statusMessage);
+            StatusUpdate status = new StatusUpdate(statusMessage);
+            status.setMedia(file);
+            twitter.updateStatus(status);
 
 	    System.out.println(cmdName + "Success.");
 	    }

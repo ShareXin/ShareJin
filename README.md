@@ -17,7 +17,8 @@ gnome-screenshot (if you use Linux)
    - On Windows, put inside `~\AppData\Local\ShareJin\`
    - On Mac, put inside `~/Library/Application Support/ShareJin`
 4. Attach the scripts to a keyboard shortcut
-5. Done!
+5. Make sure a picture is placed in either `/tmp/ShareJin_tmp.jpg` or `\AppData\Local\Temp\ShareJin_tmp.jpg`
+6. Done!
 
 ### Changelog
 #### [0.0.1] - 2016-08-27
