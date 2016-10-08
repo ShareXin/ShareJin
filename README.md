@@ -1,4 +1,7 @@
-# ShareJin
+# ShareJin  
+
+On Windows
+![Windows](https://raw.githubusercontent.com/ShareXin/ShareJin/master/twitter-2016-10-08-06_22_430_PM.png)
 
 #### Requirements
 Java 8  
