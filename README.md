@@ -1,7 +1,10 @@
 # ShareJin  
 
 On Windows
-![Windows](https://raw.githubusercontent.com/ShareXin/ShareJin/master/twitter-2016-10-08-06_22_430_PM.png)
+![Windows](https://raw.githubusercontent.com/ShareXin/ShareJin/master/twitter-2016-10-08-06_22_430_PM.png)  
+
+On Mac
+![Mac](https://raw.githubusercontent.com/ShareXin/ShareJin/master/4_iZa-Td.png)
 
 #### Requirements
 Java 8  
